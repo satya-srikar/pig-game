@@ -17,21 +17,16 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
     if (gamePlaying) {
         //1. Random Number
         var diceOne = Math.floor(Math.random() * 6) + 1;
-        var diceTwo = Math.floor(Math.random() * 6) + 1;
 
         //2. Display the result
         var diceOneDOM = document.querySelector("#dice-1");
-        var diceTwoDOM = document.querySelector("#dice-2");
 
         diceOneDOM.style.display = "block";
         diceOneDOM.src = "dice-" + diceOne + ".png";
 
-        diceTwoDOM.style.display = "block";
-        diceTwoDOM.src = "dice-" + diceTwo + ".png";
-
         //3. Update the round score only if the rolled number is NOT a 1 and two cosicutive rolles are not 6
-        if (diceOne !== 1 && diceTwo !== 1) {
-            roundScore += diceOne + diceTwo;
+        if (diceOne !== 1) {
+            roundScore += diceOne;
             document.getElementById(
                 "current-" + activePlayer
             ).textContent = roundScore;
@@ -66,7 +61,6 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
                 .classList.remove("active");
 
             document.querySelector("#dice-1").style.display = "none";
-            document.querySelector("#dice-2").style.display = "none";
 
             gamePlaying = false;
         } else {
@@ -89,7 +83,6 @@ function nextPlayer() {
 
     //Hide the dice
     document.querySelector("#dice-1").style.display = "none";
-    document.querySelector("#dice-2").style.display = "none";
 
     //Reset the previous dice roll
     previousRoll = 0;
@@ -105,7 +98,6 @@ function init() {
     gamePlaying = true;
 
     document.querySelector("#dice-1").style.display = "none";
-    document.querySelector("#dice-2").style.display = "none";
 
     document.getElementById("score-0").textContent = "0";
     document.getElementById("score-1").textContent = "0";
